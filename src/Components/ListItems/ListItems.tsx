@@ -5,7 +5,7 @@ import React, { useState } from "react"
 // }
 
 const ListItems: React.FunctionComponent = () => {
-  return <div>1</div>
+  return <div className={"menu"}>1</div>
 }
 
 // const mapStateToProps = (state: any) => ({
