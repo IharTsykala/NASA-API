@@ -1,7 +1,13 @@
+$lightColor: #ffffff;
+$middleColor: #a7a7a7;
+
+
 .wrapper {
-  background-color: green;
-  color: red;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 20% 1fr;
 }
 .menu {
-  background-color: blue;
+  border-right: 1px solid $middleColor;
 }
