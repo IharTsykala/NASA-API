@@ -4,12 +4,12 @@ import React, { useState } from "react"
 //   dispatch: any,
 // }
 
-const ListItems: React.FunctionComponent = () => {
-  return <div className={"menu"}>1</div>
+const PhotosBlock: React.FunctionComponent = () => {
+  return <div>2</div>
 }
 
 // const mapStateToProps = (state: any) => ({
 //   searchStringState: state.pagination.searchString,
 // })
 
-export default ListItems
+export default PhotosBlock

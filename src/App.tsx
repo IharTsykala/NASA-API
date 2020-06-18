@@ -7,8 +7,9 @@ import createSagaMiddleware from "redux-saga"
 import rootReducer from "./Redux/index"
 import cardItemSaga from "./Redux/store/CardItem/CardItem.sagas"
 import descriptionItemSaga from "./Redux/store/DescriptionItem/DescriptionItem.sagas"
-import ListItems from "./Components/ListItems/ListItems"
-import DescriptionItem from "./Components/DescriptionItem/DescriptionItem"
+import MainPage from "./Pages/MainPage/MainPage"
+import Box from "@material-ui/core/Box"
+import ScopedCssBaseline from "@material-ui/core/ScopedCssBaseline"
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -24,10 +25,13 @@ sagaMiddleware.run(descriptionItemSaga)
 
 const App: React.FC = () => (
   <Provider store={store}>
-    <div className={"wrapper"}>
-      <ListItems />
-      <DescriptionItem />
-    </div>
+    <ScopedCssBaseline>
+      <Box component="div" className={"wrapper"}>
+        <Box component="div" className={"main"}>
+          <MainPage />
+        </Box>
+      </Box>
+    </ScopedCssBaseline>
   </Provider>
 )
 
