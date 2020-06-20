@@ -48,6 +48,7 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
             KeyboardButtonProps={{
               "aria-label": "change date",
             }}
+            maxDate={new Date()}
           />
         </Grid>
       </MuiPickersUtilsProvider>
