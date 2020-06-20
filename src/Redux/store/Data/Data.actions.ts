@@ -2,16 +2,14 @@ import { Action } from "../../interfacesAction/action.interface"
 import { CardItem } from "../../InterfacesEntity/CardItem.interface"
 
 export const ActionTypes = {
-  GET_LIST_ALBUMS_WITH_PHOTOS: "[Album] Get list albums with photos by userId",
+  SET_DATA: "[Data] Set data",
 
   GET_FAILURE: "[getFailure] Get failure",
 }
 
-export const getListAlbumsWithPhotosByUserIDAction = (
-  userId: string
-): Action<string> => ({
-  type: ActionTypes.GET_LIST_ALBUMS_WITH_PHOTOS,
-  payload: userId,
+export const setData = (data: Date): Action<Date> => ({
+  type: ActionTypes.SET_DATA,
+  payload: data,
 })
 
 export const getFailureAction = (error?: any): Action<any> => ({

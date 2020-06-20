@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 import DateFnsUtils from "@date-io/date-fns"
 import Grid from "@material-ui/core/Grid"
 import {
@@ -6,14 +6,33 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers"
 import { Box } from "@material-ui/core"
+import { connect } from "react-redux"
+import { setData } from "../../Redux/store/Data/Data.actions"
 
-const ButtonCalendar: React.FunctionComponent = () => {
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(
-    new Date()
-  )
+type ButtonCalendarProps = {
+  currentDate: Date,
+  dispatch: any,
+}
 
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date)
+const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
+  currentDate,
+  dispatch,
+}) => {
+  useEffect(() => {
+    const date = localStorage.getItem("date")
+    console.log(date)
+    // console.log(currentDate)
+  }, [])
+
+  const handleDateChange = (newDate: Date | null) => {
+    if (
+      newDate &&
+      newDate.toString().slice(4, 11) !== currentDate.toString().slice(4, 11)
+    ) {
+      dispatch(setData(newDate))
+      console.log(newDate)
+      localStorage.setItem("date", JSON.stringify(newDate.toString()))
+    }
   }
   return (
     <Box component={"div"} className={"button-calendar"}>
@@ -26,7 +45,7 @@ const ButtonCalendar: React.FunctionComponent = () => {
             margin="normal"
             id="date-picker-inline"
             label="Date picker inline"
-            value={selectedDate}
+            value={currentDate}
             onChange={handleDateChange}
             KeyboardButtonProps={{
               "aria-label": "change date",
@@ -38,4 +57,8 @@ const ButtonCalendar: React.FunctionComponent = () => {
   )
 }
 
-export default ButtonCalendar
+const mapStateToProps = (state: any) => ({
+  currentDate: state.data.data,
+})
+
+export default connect(mapStateToProps)(ButtonCalendar)
