@@ -19,10 +19,9 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
   dispatch,
 }) => {
   useEffect(() => {
-    const date = localStorage.getItem("date")
-    console.log(date)
-    // console.log(currentDate)
-  }, [])
+    const date = JSON.parse(localStorage.getItem("date") || "")
+    if (date) dispatch(setData(date))
+  }, [dispatch])
 
   const handleDateChange = (newDate: Date | null) => {
     if (
@@ -30,7 +29,6 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
       newDate.toString().slice(4, 11) !== currentDate.toString().slice(4, 11)
     ) {
       dispatch(setData(newDate))
-      console.log(newDate)
       localStorage.setItem("date", JSON.stringify(newDate.toString()))
     }
   }
