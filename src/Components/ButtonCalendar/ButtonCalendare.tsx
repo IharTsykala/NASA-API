@@ -11,13 +11,13 @@ import { setData, setTodayData } from "../../Redux/store/Data/Data.actions"
 
 type ButtonCalendarProps = {
   currentDate: Date,
-  valueTodayDate: boolean,
+  // valueTodayDate: boolean,
   dispatch: any,
 }
 
 const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
   currentDate,
-  valueTodayDate,
+  // valueTodayDate,
   dispatch,
 }) => {
   useEffect(() => {
@@ -36,10 +36,10 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
         newDate.toString().slice(4, 11) !== new Date().toString().slice(4, 11)
       ) {
         localStorage.setItem("date", JSON.stringify(newDate.toString()))
-        dispatch(setTodayData(false))
+        // dispatch(setTodayData(false))
         localStorage.setItem("valueTodayDate", "")
       } else {
-        dispatch(setTodayData(true))
+        // dispatch(setTodayData(true))
         localStorage.setItem("valueTodayDate", "true")
       }
     }
@@ -70,7 +70,7 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
 
 const mapStateToProps = (state: any) => ({
   currentDate: state.data.data,
-  valueTodayDate: state.data.valueTodayDate,
+  // valueTodayDate: state.data.valueTodayDate,
 })
 
 export default connect(mapStateToProps)(ButtonCalendar)
