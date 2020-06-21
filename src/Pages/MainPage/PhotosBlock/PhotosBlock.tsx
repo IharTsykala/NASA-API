@@ -1,15 +1,25 @@
 import React, { useState } from "react"
+import { Box } from "@material-ui/core"
+import { connect } from "react-redux"
 
-// type SearchProps = {
-//   dispatch: any,
-// }
-
-const PhotosBlock: React.FunctionComponent = () => {
-  return <div>2</div>
+type PhotosBlockProps = {
+  currentDate: Date,
+  dispatch: any,
 }
 
-// const mapStateToProps = (state: any) => ({
-//   searchStringState: state.pagination.searchString,
-// })
+const PhotosBlock: React.FunctionComponent<PhotosBlockProps> = ({
+  currentDate,
+  dispatch,
+}) => {
+  return (
+    <Box component={"div"} className={"photos-block"}>
+      2
+    </Box>
+  )
+}
 
-export default PhotosBlock
+const mapStateToProps = (state: any) => ({
+  currentDate: state.data.data,
+})
+
+export default connect(mapStateToProps)(PhotosBlock)

@@ -7,20 +7,25 @@ import {
 } from "@material-ui/pickers"
 import { Box } from "@material-ui/core"
 import { connect } from "react-redux"
-import { setData } from "../../Redux/store/Data/Data.actions"
+import { setData, setTodayData } from "../../Redux/store/Data/Data.actions"
 
 type ButtonCalendarProps = {
   currentDate: Date,
+  valueTodayDate: boolean,
   dispatch: any,
 }
 
 const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
   currentDate,
+  valueTodayDate,
   dispatch,
 }) => {
   useEffect(() => {
-    const date = JSON.parse(localStorage.getItem("date") || "")
-    if (date) dispatch(setData(date))
+    const date = JSON.parse(localStorage.getItem("date") || "[]")
+    console.log(date)
+    if (!Array.isArray(date) && !localStorage.getItem("valueTodayDate")) {
+      dispatch(setData(date))
+    }
   }, [dispatch])
 
   const handleDateChange = (newDate: Date | null) => {
@@ -29,7 +34,16 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
       newDate.toString().slice(4, 11) !== currentDate.toString().slice(4, 11)
     ) {
       dispatch(setData(newDate))
-      localStorage.setItem("date", JSON.stringify(newDate.toString()))
+      if (
+        newDate.toString().slice(4, 11) !== new Date().toString().slice(4, 11)
+      ) {
+        localStorage.setItem("date", JSON.stringify(newDate.toString()))
+        dispatch(setTodayData(false))
+        localStorage.setItem("valueTodayDate", "")
+      } else {
+        dispatch(setTodayData(true))
+        localStorage.setItem("valueTodayDate", "true")
+      }
     }
   }
   return (
@@ -58,6 +72,7 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
 
 const mapStateToProps = (state: any) => ({
   currentDate: state.data.data,
+  valueTodayDate: state.data.valueTodayDate,
 })
 
 export default connect(mapStateToProps)(ButtonCalendar)
