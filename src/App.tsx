@@ -10,6 +10,7 @@ import descriptionItemSaga from "./Redux/store/DescriptionItem/DescriptionItem.s
 import MainPage from "./Pages/MainPage/MainPage"
 import Box from "@material-ui/core/Box"
 import ScopedCssBaseline from "@material-ui/core/ScopedCssBaseline"
+import photoSaga from "./Redux/store/Photo/Photo.sagas"
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -20,7 +21,7 @@ const store = createStore(
   )
 )
 
-sagaMiddleware.run(cardItemSaga)
+sagaMiddleware.run(photoSaga)
 sagaMiddleware.run(descriptionItemSaga)
 
 const App: React.FC = () => (
