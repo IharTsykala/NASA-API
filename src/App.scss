@@ -1,6 +1,13 @@
 $lightColor: #ffffff;
 $middleColor: #a7a7a7;
 
+$middlePadding: 5%;
+
+%full-area {
+  width: 100%;
+  height: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,25 +20,37 @@ $middleColor: #a7a7a7;
 }
 
 .main {
-  width: 100%;
-  height: 100%;
+  @extend %full-area;
 }
 
 .main-page {
-  width: 100%;
-  height: 100%;
+  @extend %full-area;
   display: grid;
   grid-template-rows: 5% 1fr;
 }
 .menu-block {
-  //border-right: 1px solid $middleColor;
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+%photos-block__arrow {
+  position: absolute;
+  top: 45%;
+  left: $middlePadding;
+  cursor: pointer;
 }
 
 .photos-block {
   height: 100%;
   background-color: #a7a7a7;
+  .photos-block__back {
+    @extend %photos-block__arrow;
+  }
+  .photos-block__forward {
+    @extend %photos-block__arrow;
+    left: auto;
+    right: $middlePadding;
+  }
 }
 
 

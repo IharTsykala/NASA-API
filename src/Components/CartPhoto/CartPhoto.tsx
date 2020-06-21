@@ -8,6 +8,8 @@ import {
 } from "@material-ui/core"
 import { PhotoInterface } from "../../Redux/InterfacesEntity/Photo.interface"
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos"
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       paddingTop: "56.25%", // 16:9
+      position: "relative",
     },
     content: {
       overflowY: "auto",
@@ -35,7 +38,6 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
   currentPhoto,
 }) => {
   const classes = useStyles()
-
   return (
     <>
       <Card className={classes.root}>
@@ -45,7 +47,10 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
             image={currentPhoto.url}
             title={"photoOfTheDay"}
             className={classes.media}
-          />
+          >
+            <ArrowBackIosIcon className={`photos-block__back`} />
+            <ArrowForwardIosIcon className={`photos-block__forward`} />
+          </CardMedia>
         )}
         <CardContent className={classes.content}>
           <Typography variant="body2" color="textSecondary" component="p">

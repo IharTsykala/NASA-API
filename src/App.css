@@ -1,3 +1,8 @@
+.main-page, .main {
+  width: 100%;
+  height: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,14 +14,7 @@
   height: 100vh;
 }
 
-.main {
-  width: 100%;
-  height: 100%;
-}
-
 .main-page {
-  width: 100%;
-  height: 100%;
   display: grid;
   grid-template-rows: 5% 1fr;
 }
@@ -26,9 +24,20 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.photos-block .photos-block__forward, .photos-block .photos-block__back {
+  position: absolute;
+  top: 45%;
+  left: 5%;
+  cursor: pointer;
+}
+
 .photos-block {
   height: 100%;
   background-color: #a7a7a7;
+}
+.photos-block .photos-block__forward {
+  left: auto;
+  right: 5%;
 }
 
 /*# sourceMappingURL=App.css.map */

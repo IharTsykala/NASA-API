@@ -1,74 +1,37 @@
 import React, { useEffect, useState } from "react"
-import {
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  CardMedia,
-} from "@material-ui/core"
+import { Box, List } from "@material-ui/core"
 import { connect } from "react-redux"
 import { PhotoInterface } from "../../../Redux/InterfacesEntity/Photo.interface"
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: "100%",
-      maxWidth: "1400px",
-      margin: "auto",
-      height: "100%",
-      textAlign: "center",
-    },
-    media: {
-      paddingTop: "56.25%", // 16:9
-    },
-    content: {
-      overflowY: "auto",
-    },
-  })
-)
+import CardPhoto from "../../../Components/CartPhoto/CartPhoto"
 
 type PhotosBlockProps = {
   currentDate: Date,
   currentPhoto: PhotoInterface,
-	catalogValue: boolean,
+  catalogValue: boolean,
+  catalog: [PhotoInterface],
   dispatch: any,
 }
 
 const PhotosBlock: React.FunctionComponent<PhotosBlockProps> = ({
   currentDate,
   currentPhoto,
-	catalogValue,
+  catalogValue,
+  catalog,
   dispatch,
 }) => {
-  const classes = useStyles()
-  useEffect(() => {
-    // dispatch(getPhotoById(currentDate))
-    // console.log(currentDate)
-    // console.log(currentPhoto)
-  }, [currentDate, currentPhoto, dispatch])
   return (
     <Box component={"div"} className={"photos-block"}>
       {currentPhoto && !catalogValue && (
-        <Card className={classes.root}>
-          <CardHeader
-            title={currentPhoto.title}
-            subheader={currentPhoto.date}
-          />
-          {currentPhoto.url && (
-            <CardMedia
-              image={currentPhoto.url}
-              title={"photoOfTheDay"}
-              className={classes.media}
-            />
-          )}
-          <CardContent className={classes.content}>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {currentPhoto.explanation}
-            </Typography>
-          </CardContent>
-        </Card>
+        <>
+          <CardPhoto currentPhoto={currentPhoto} />
+        </>
+      )}
+      {currentPhoto && catalogValue && (
+        <List className={"list_request__container__list"}>
+          {catalog.map((item: PhotoInterface, index: number) => (
+            <CardPhoto currentPhoto={item} key={index} />
+          ))}
+        </List>
       )}
     </Box>
   )
@@ -78,6 +41,7 @@ const mapStateToProps = (state: any) => ({
   currentDate: state.data.data,
   currentPhoto: state.currentPhoto.currentPhoto,
   catalogValue: state.catalog.catalogValue,
+  catalog: state.currentPhoto.catalog,
 })
 
 export default connect(mapStateToProps)(PhotosBlock)
