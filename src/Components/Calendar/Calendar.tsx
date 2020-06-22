@@ -23,14 +23,23 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
   const date = Date.parse(localStorage.getItem("date") || "[]")
 
   useEffect(() => {
-    if (!Array.isArray(date) && !localStorage.getItem("valueTodayDate")) {
+    if (
+      date &&
+      !Array.isArray(date) &&
+      !localStorage.getItem("valueTodayDate")
+    ) {
       dispatch(setData(new Date(date)))
       dispatch(getPhotoByDay(new Date(date)))
     }
   }, [date, dispatch])
 
   useEffect(() => {
-    if (!Array.isArray(date) && localStorage.getItem("valueTodayDate"))
+    if (
+      (date &&
+        !Array.isArray(date) &&
+        localStorage.getItem("valueTodayDate")) ||
+      (!date && !localStorage.getItem("valueTodayDate"))
+    )
       dispatch(getPhotoByDay(currentDate))
   }, [currentDate, date, dispatch])
 

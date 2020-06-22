@@ -11,6 +11,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos"
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos"
 import handlerCommonChange from "../../services/common"
+import { getPhotoByDay } from "../../Redux/store/Photo/Photo.actions"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -55,6 +56,7 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
   )
 
   const handlerArrow = (newDate: Date) => {
+    if (localStorage.getItem("valueTodayDate")) dispatch(getPhotoByDay(newDate))
     handlerCommonChange(dispatch, newDate)
   }
 
