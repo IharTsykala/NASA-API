@@ -9,6 +9,7 @@ import { Box } from "@material-ui/core"
 import { connect } from "react-redux"
 import { setData, setTodayData } from "../../Redux/store/Data/Data.actions"
 import { getPhotoByDay } from "../../Redux/store/Photo/Photo.actions"
+import handlerCommonChange from "../../services/common"
 
 type CalendarProps = {
   currentDate: Date,
@@ -41,20 +42,8 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
     if (
       newDate &&
       newDate.toString().slice(4, 11) !== currentDate.toString().slice(4, 11)
-    ) {
-      dispatch(setData(newDate))
-      if (
-        newDate.toString().slice(4, 11) !== new Date().toString().slice(4, 11)
-      ) {
-        dispatch(getPhotoByDay(newDate))
-        localStorage.setItem("date", JSON.stringify(newDate.toString()))
-        // dispatch(setTodayData(false))
-        localStorage.setItem("valueTodayDate", "")
-      } else {
-        // dispatch(setTodayData(true))
-        localStorage.setItem("valueTodayDate", "true")
-      }
-    }
+    )
+      handlerCommonChange(dispatch, newDate)
   }
   return (
     <Box component={"div"} className={"calendar"}>

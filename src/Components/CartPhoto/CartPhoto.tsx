@@ -12,6 +12,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos"
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos"
 import { setData } from "../../Redux/store/Data/Data.actions"
 import { getPhotoByDay } from "../../Redux/store/Photo/Photo.actions"
+import handlerCommonChange from "../../services/common"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,16 +57,7 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
   )
 
   const handlerArrow = (newDate: Date) => {
-    dispatch(setData(newDate))
-    if (
-      newDate.toString().slice(4, 11) !== new Date().toString().slice(4, 11)
-    ) {
-      dispatch(getPhotoByDay(newDate))
-      localStorage.setItem("date", JSON.stringify(newDate.toString()))
-      localStorage.setItem("valueTodayDate", "")
-    } else {
-      localStorage.setItem("valueTodayDate", "true")
-    }
+    handlerCommonChange(dispatch, newDate)
   }
 
   return (
