@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
   Card,
   CardContent,
@@ -11,6 +11,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos"
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos"
 import { setData } from "../../Redux/store/Data/Data.actions"
+import { getPhotoByDay } from "../../Redux/store/Photo/Photo.actions"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -53,7 +54,20 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
   const forward = new Date(
     Date.parse(currentDate.toString()) + 24 * 3600 * 1000
   )
-  console.log(forward)
+
+  const handlerArrow = (newDate: Date) => {
+    dispatch(setData(newDate))
+    if (
+      newDate.toString().slice(4, 11) !== new Date().toString().slice(4, 11)
+    ) {
+      dispatch(getPhotoByDay(newDate))
+      localStorage.setItem("date", JSON.stringify(newDate.toString()))
+      localStorage.setItem("valueTodayDate", "")
+    } else {
+      localStorage.setItem("valueTodayDate", "true")
+    }
+  }
+
   return (
     <>
       <Card className={classes.root}>
@@ -67,17 +81,13 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
             {!catalogValue && (
               <ArrowBackIosIcon
                 className={`photos-block__back`}
-                onClick={() => {
-                  dispatch(setData(back))
-                }}
+                onClick={() => handlerArrow(back)}
               />
             )}
             {!catalogValue && !disableForward && (
               <ArrowForwardIosIcon
                 className={`photos-block__forward`}
-                onClick={() => {
-                  dispatch(setData(forward))
-                }}
+                onClick={() => handlerArrow(forward)}
               />
             )}
           </CardMedia>
