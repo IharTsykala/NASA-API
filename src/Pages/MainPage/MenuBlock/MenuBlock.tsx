@@ -1,13 +1,13 @@
 import React from "react"
 import { Box } from "@material-ui/core"
 import Calendar from "../../../Components/Calendar/Calendar"
-import Catalog from "../../../Components/Catalog/Catalog"
+import Tape from "../../../Components/Tape/Tape"
 
 const MenuBlock: React.FunctionComponent = () => {
   return (
     <Box component={"div"} className={"menu-block"}>
       <Calendar />
-      <Catalog />
+      <Tape />
     </Box>
   )
 }

@@ -7,7 +7,7 @@ import {
 } from "@material-ui/pickers"
 import { Box } from "@material-ui/core"
 import { connect } from "react-redux"
-import { setData, setTodayData } from "../../Redux/store/Data/Data.actions"
+import { setData } from "../../Redux/store/Data/Data.actions"
 import { getPhotoByDay } from "../../Redux/store/Photo/Photo.actions"
 import handlerCommonChange from "../../services/common"
 

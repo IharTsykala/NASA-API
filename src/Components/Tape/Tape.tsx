@@ -4,13 +4,13 @@ import { getCatalogByDay } from "../../Redux/store/Photo/Photo.actions"
 import { connect } from "react-redux"
 import { setCatalogValue } from "../../Redux/store/Catalog/Catalog.actions"
 
-type CatalogProps = {
+type TapeProps = {
   currentDate: Date,
   catalogValue: boolean,
   dispatch: any,
 }
 
-const Catalog: React.FunctionComponent<CatalogProps> = ({
+const Tape: React.FunctionComponent<TapeProps> = ({
   currentDate,
   catalogValue,
   dispatch,
@@ -44,4 +44,4 @@ const mapStateToProps = (state: any) => ({
   catalogValue: state.catalog.catalogValue,
 })
 
-export default connect(mapStateToProps)(Catalog)
+export default connect(mapStateToProps)(Tape)
