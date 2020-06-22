@@ -23,14 +23,25 @@ const PhotosBlock: React.FunctionComponent<PhotosBlockProps> = ({
     <Box component={"div"} className={"photos-block"}>
       {currentPhoto && !catalogValue && (
         <>
-          <CardPhoto currentPhoto={currentPhoto} />
+          <CardPhoto
+            currentDate={currentDate}
+            currentPhoto={currentPhoto}
+            catalogValue={catalogValue}
+            dispatch={dispatch}
+          />
         </>
       )}
       {currentPhoto && catalogValue && (
         <List className={"list_request__container__list"}>
-          {catalog.map((item: PhotoInterface, index: number) => (
-            <CardPhoto currentPhoto={item} key={index} />
-          ))}
+          {catalog &&
+            catalog.map((item: PhotoInterface, index: number) => (
+              <CardPhoto
+                currentDate={currentDate}
+                currentPhoto={item}
+                key={index}
+                catalogValue={catalogValue}
+              />
+            ))}
         </List>
       )}
     </Box>

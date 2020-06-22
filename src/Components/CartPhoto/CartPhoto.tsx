@@ -10,6 +10,7 @@ import { PhotoInterface } from "../../Redux/InterfacesEntity/Photo.interface"
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos"
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos"
+import { setData } from "../../Redux/store/Data/Data.actions"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,20 +25,29 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: "56.25%", // 16:9
       position: "relative",
     },
-    content: {
-      overflowY: "auto",
-    },
   })
 )
 
 type CardPhotoProps = {
+  currentDate: Date,
   currentPhoto: PhotoInterface,
+  catalogValue: boolean,
+  dispatch?: any,
 }
 
 const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
+  currentDate,
   currentPhoto,
+  catalogValue,
+  dispatch,
 }) => {
   const classes = useStyles()
+
+  let disableForward = false
+  if (
+    new Date().toString().slice(4, 11) === currentDate.toString().slice(4, 11)
+  )
+    disableForward = true
   return (
     <>
       <Card className={classes.root}>
@@ -48,11 +58,25 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
             title={"photoOfTheDay"}
             className={classes.media}
           >
-            <ArrowBackIosIcon className={`photos-block__back`} />
-            <ArrowForwardIosIcon className={`photos-block__forward`} />
+            {!catalogValue && (
+              <ArrowBackIosIcon
+                className={`photos-block__back`}
+                onClick={() => {
+                  dispatch(setData(currentDate))
+                }}
+              />
+            )}
+            {!catalogValue && !disableForward && (
+              <ArrowForwardIosIcon
+                className={`photos-block__forward`}
+                onClick={() => {
+                  dispatch(setData(currentDate))
+                }}
+              />
+            )}
           </CardMedia>
         )}
-        <CardContent className={classes.content}>
+        <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             {currentPhoto.explanation}
           </Typography>

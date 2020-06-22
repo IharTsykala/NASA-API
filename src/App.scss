@@ -15,7 +15,7 @@ $middlePadding: 5%;
 }
 
 .wrapper {
-  width: 100vw;
+  //width: 100vw;
   height: 100vh;
 }
 
@@ -29,8 +29,14 @@ $middlePadding: 5%;
   grid-template-rows: 5% 1fr;
 }
 .menu-block {
+  max-width: 1400px;
+  width: 100vw;
+  background-color: $lightColor;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  justify-self: center;
+  justify-items: center;
+  align-items: center;
 }
 
 %photos-block__arrow {
@@ -38,11 +44,11 @@ $middlePadding: 5%;
   top: 45%;
   left: $middlePadding;
   cursor: pointer;
+  color: $middleColor;
 }
 
 .photos-block {
   height: 100%;
-  background-color: #a7a7a7;
   .photos-block__back {
     @extend %photos-block__arrow;
   }

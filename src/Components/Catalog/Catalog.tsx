@@ -33,7 +33,7 @@ const Catalog: React.FunctionComponent<CatalogProps> = ({
             color="primary"
           />
         }
-        label="Catalog"
+        label="Tape"
       />
     </Box>
   )

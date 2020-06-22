@@ -10,7 +10,6 @@
 }
 
 .wrapper {
-  width: 100vw;
   height: 100vh;
 }
 
@@ -20,8 +19,14 @@
 }
 
 .menu-block {
+  max-width: 1400px;
+  width: 100vw;
+  background-color: #ffffff;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  justify-self: center;
+  justify-items: center;
+  align-items: center;
 }
 
 .photos-block .photos-block__forward, .photos-block .photos-block__back {
@@ -29,11 +34,11 @@
   top: 45%;
   left: 5%;
   cursor: pointer;
+  color: #a7a7a7;
 }
 
 .photos-block {
   height: 100%;
-  background-color: #a7a7a7;
 }
 .photos-block .photos-block__forward {
   left: auto;
