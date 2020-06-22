@@ -11,7 +11,7 @@ const MenuBlock: React.FunctionComponent = () => {
   return (
     <Box component={"div"} className={"menu-block"}>
       <ButtonCalendar />
-      <ButtonPhotoTape />
+      {/*<ButtonPhotoTape />*/}
     </Box>
   )
 }
