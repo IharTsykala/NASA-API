@@ -48,6 +48,12 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
     new Date().toString().slice(4, 11) === currentDate.toString().slice(4, 11)
   )
     disableForward = true
+
+  const back = new Date(Date.parse(currentDate.toString()) - 24 * 3600 * 1000)
+  const forward = new Date(
+    Date.parse(currentDate.toString()) + 24 * 3600 * 1000
+  )
+  console.log(forward)
   return (
     <>
       <Card className={classes.root}>
@@ -62,7 +68,7 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
               <ArrowBackIosIcon
                 className={`photos-block__back`}
                 onClick={() => {
-                  dispatch(setData(currentDate))
+                  dispatch(setData(back))
                 }}
               />
             )}
@@ -70,7 +76,7 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
               <ArrowForwardIosIcon
                 className={`photos-block__forward`}
                 onClick={() => {
-                  dispatch(setData(currentDate))
+                  dispatch(setData(forward))
                 }}
               />
             )}
