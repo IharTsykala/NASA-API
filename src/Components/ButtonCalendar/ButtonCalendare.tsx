@@ -8,6 +8,7 @@ import {
 import { Box } from "@material-ui/core"
 import { connect } from "react-redux"
 import { setData, setTodayData } from "../../Redux/store/Data/Data.actions"
+import { getPhotoById } from "../../Redux/store/Photo/Photo.actions"
 
 type ButtonCalendarProps = {
   currentDate: Date,
@@ -20,11 +21,21 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
   // valueTodayDate,
   dispatch,
 }) => {
+  const date = Date.parse(localStorage.getItem("date") || "[]")
+
   useEffect(() => {
-    const date = JSON.parse(localStorage.getItem("date") || "[]")
-    if (!Array.isArray(date) && !localStorage.getItem("valueTodayDate"))
-      dispatch(setData(date))
-  }, [dispatch])
+    // const date = Date.parse(localStorage.getItem("date") || "[]")
+    if (!Array.isArray(date) && !localStorage.getItem("valueTodayDate")) {
+      dispatch(setData(new Date(date)))
+      dispatch(getPhotoById(new Date(date)))
+    }
+  }, [date, dispatch])
+
+  useEffect(() => {
+    // const date = Date.parse(localStorage.getItem("date") || "[]")
+    if (!Array.isArray(date) && localStorage.getItem("valueTodayDate"))
+      dispatch(getPhotoById(currentDate))
+  }, [currentDate, date, dispatch])
 
   const handleDateChange = (newDate: Date | null) => {
     if (
@@ -35,6 +46,7 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
       if (
         newDate.toString().slice(4, 11) !== new Date().toString().slice(4, 11)
       ) {
+        dispatch(getPhotoById(newDate))
         localStorage.setItem("date", JSON.stringify(newDate.toString()))
         // dispatch(setTodayData(false))
         localStorage.setItem("valueTodayDate", "")

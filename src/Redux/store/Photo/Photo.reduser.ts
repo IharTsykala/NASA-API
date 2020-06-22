@@ -1,25 +1,25 @@
-import { CardItem } from "../../InterfacesEntity/CardItem.interface"
+import { PhotoInterface } from "../../InterfacesEntity/Photo.interface"
 import { ActionTypes } from "./Photo.actions"
 import { Action } from "../../interfacesAction/action.interface"
 
 export interface State {
-	cardItem: CardItem
+  currentPhoto: PhotoInterface;
 }
 
 const initialState: State = {
-  cardItem: [{} as CardItem],
+  currentPhoto: {} as PhotoInterface,
 }
 
-export const cardItemReducer = (
+export const PhotoReducer = (
   state: State = initialState,
-  action: Action<[{}]>
+  action: Action<any>
 ) => {
   switch (action.type) {
-  // case ActionTypes.SET_LIST_ALBUMS_WITH_PHOTOS:
-  //   return {
-  //     ...state,
-  //     albumsForUserOwnerPage: action.payload
-  //   }
+  case ActionTypes.SET_CURRENT_PHOTO:
+    return {
+      ...state,
+      currentPhoto: action.payload
+    }
   default:
     return state
   }

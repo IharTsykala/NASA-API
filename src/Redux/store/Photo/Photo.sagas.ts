@@ -1,12 +1,18 @@
 import { put, takeEvery } from "redux-saga/effects"
-import { ActionTypes, getFailureAction } from "./Photo.actions"
+import { ActionTypes, getFailureAction, setCurrentPhoto } from "./Photo.actions"
 import ServicePhoto from "../../../services/photo"
 
 function* getPhotoByIdSaga(actions: any) {
   try {
-    const photo = yield ServicePhoto.getPhotoById(actions.payload)
-    console.log(photo)
-    // yield put(setListAlbumsWithPhotosInStoreAction(listAlbums))
+    const year = actions.payload.getFullYear()
+    let mouth = actions.payload.getMonth() + 1
+    if (mouth < 10) mouth = `0${mouth}`
+    let day = actions.payload.getDate()
+    if (day < 10) day = `0${day}`
+    const date = `${year}-${mouth}-${day}`
+
+    const photo = yield ServicePhoto.getPhotoById(date)
+    yield put(setCurrentPhoto(photo))
   } catch (e) {
     yield put(getFailureAction(e))
   }
