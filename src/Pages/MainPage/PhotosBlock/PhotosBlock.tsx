@@ -32,12 +32,14 @@ const useStyles = makeStyles((theme: Theme) =>
 type PhotosBlockProps = {
   currentDate: Date,
   currentPhoto: PhotoInterface,
+	catalogValue: boolean,
   dispatch: any,
 }
 
 const PhotosBlock: React.FunctionComponent<PhotosBlockProps> = ({
   currentDate,
   currentPhoto,
+	catalogValue,
   dispatch,
 }) => {
   const classes = useStyles()
@@ -48,7 +50,7 @@ const PhotosBlock: React.FunctionComponent<PhotosBlockProps> = ({
   }, [currentDate, currentPhoto, dispatch])
   return (
     <Box component={"div"} className={"photos-block"}>
-      {currentPhoto && (
+      {currentPhoto && !catalogValue && (
         <Card className={classes.root}>
           <CardHeader
             title={currentPhoto.title}
@@ -75,6 +77,7 @@ const PhotosBlock: React.FunctionComponent<PhotosBlockProps> = ({
 const mapStateToProps = (state: any) => ({
   currentDate: state.data.data,
   currentPhoto: state.currentPhoto.currentPhoto,
+  catalogValue: state.catalog.catalogValue,
 })
 
 export default connect(mapStateToProps)(PhotosBlock)
