@@ -4,13 +4,15 @@ import { Action } from "../../interfacesAction/action.interface"
 
 export interface State {
   currentPhoto: PhotoInterface;
+  catalog: [PhotoInterface];
 }
 
 const initialState: State = {
   currentPhoto: {} as PhotoInterface,
+  catalog: [{} as PhotoInterface],
 }
 
-export const PhotoReducer = (
+export const photoReducer = (
   state: State = initialState,
   action: Action<any>
 ) => {
@@ -19,6 +21,11 @@ export const PhotoReducer = (
     return {
       ...state,
       currentPhoto: action.payload
+    }
+  case ActionTypes.SET_CATALOG:
+    return {
+      ...state,
+      catalog: action.payload
     }
   default:
     return state

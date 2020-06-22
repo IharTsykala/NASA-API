@@ -26,9 +26,12 @@ $middleColor: #a7a7a7;
 .menu-block {
   //border-right: 1px solid $middleColor;
   display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .photos-block {
   height: 100%;
   background-color: #a7a7a7;
 }
+
+

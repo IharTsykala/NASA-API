@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
     media: {
       paddingTop: "56.25%", // 16:9
     },
+    content: {
+      overflowY: "auto",
+    },
   })
 )
 
@@ -40,26 +43,31 @@ const PhotosBlock: React.FunctionComponent<PhotosBlockProps> = ({
   const classes = useStyles()
   useEffect(() => {
     // dispatch(getPhotoById(currentDate))
-    console.log(currentDate)
-    console.log(currentPhoto)
+    // console.log(currentDate)
+    // console.log(currentPhoto)
   }, [currentDate, currentPhoto, dispatch])
   return (
     <Box component={"div"} className={"photos-block"}>
-      <Card className={classes.root}>
-        <CardHeader title={currentPhoto.title} subheader={currentPhoto.date} />
-        {currentPhoto.url && (
-          <CardMedia
-            image={currentPhoto.url}
-            title={"photoOfTheDay"}
-            className={classes.media}
+      {currentPhoto && (
+        <Card className={classes.root}>
+          <CardHeader
+            title={currentPhoto.title}
+            subheader={currentPhoto.date}
           />
-        )}
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {currentPhoto.explanation}
-          </Typography>
-        </CardContent>
-      </Card>
+          {currentPhoto.url && (
+            <CardMedia
+              image={currentPhoto.url}
+              title={"photoOfTheDay"}
+              className={classes.media}
+            />
+          )}
+          <CardContent className={classes.content}>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {currentPhoto.explanation}
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
     </Box>
   )
 }

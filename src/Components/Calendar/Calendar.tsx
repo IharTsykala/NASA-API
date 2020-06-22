@@ -8,15 +8,15 @@ import {
 import { Box } from "@material-ui/core"
 import { connect } from "react-redux"
 import { setData, setTodayData } from "../../Redux/store/Data/Data.actions"
-import { getPhotoById } from "../../Redux/store/Photo/Photo.actions"
+import { getPhotoByDay } from "../../Redux/store/Photo/Photo.actions"
 
-type ButtonCalendarProps = {
+type CalendarProps = {
   currentDate: Date,
   // valueTodayDate: boolean,
   dispatch: any,
 }
 
-const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
+const Calendar: React.FunctionComponent<CalendarProps> = ({
   currentDate,
   // valueTodayDate,
   dispatch,
@@ -27,14 +27,14 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
     // const date = Date.parse(localStorage.getItem("date") || "[]")
     if (!Array.isArray(date) && !localStorage.getItem("valueTodayDate")) {
       dispatch(setData(new Date(date)))
-      dispatch(getPhotoById(new Date(date)))
+      dispatch(getPhotoByDay(new Date(date)))
     }
   }, [date, dispatch])
 
   useEffect(() => {
     // const date = Date.parse(localStorage.getItem("date") || "[]")
     if (!Array.isArray(date) && localStorage.getItem("valueTodayDate"))
-      dispatch(getPhotoById(currentDate))
+      dispatch(getPhotoByDay(currentDate))
   }, [currentDate, date, dispatch])
 
   const handleDateChange = (newDate: Date | null) => {
@@ -46,7 +46,7 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
       if (
         newDate.toString().slice(4, 11) !== new Date().toString().slice(4, 11)
       ) {
-        dispatch(getPhotoById(newDate))
+        dispatch(getPhotoByDay(newDate))
         localStorage.setItem("date", JSON.stringify(newDate.toString()))
         // dispatch(setTodayData(false))
         localStorage.setItem("valueTodayDate", "")
@@ -57,7 +57,7 @@ const ButtonCalendar: React.FunctionComponent<ButtonCalendarProps> = ({
     }
   }
   return (
-    <Box component={"div"} className={"button-calendar"}>
+    <Box component={"div"} className={"calendar"}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container justify="space-around">
           <KeyboardDatePicker
@@ -85,4 +85,4 @@ const mapStateToProps = (state: any) => ({
   // valueTodayDate: state.data.valueTodayDate,
 })
 
-export default connect(mapStateToProps)(ButtonCalendar)
+export default connect(mapStateToProps)(Calendar)
