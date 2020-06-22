@@ -16,8 +16,8 @@ const Tape: React.FunctionComponent<TapeProps> = ({
   dispatch,
 }) => {
   useEffect(() => {
-    dispatch(getCatalogByDay(currentDate))
-  }, [currentDate, dispatch])
+    if (catalogValue) dispatch(getCatalogByDay(currentDate))
+  }, [catalogValue, currentDate, dispatch])
 
   const handleChange = () => {
     dispatch(setCatalogValue())
