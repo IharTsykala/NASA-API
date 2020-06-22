@@ -31,6 +31,18 @@ $middlePadding: 5%;
 .menu-block {
   max-width: 1400px;
   width: 100vw;
+  @media (max-height: 1000px) {
+    height: 5%;
+  }
+  @media (max-height: 800px) {
+    height: 10%;
+  }
+  @media (max-height: 600px) {
+    height: 20%;
+  }
+  @media (max-height: 400px) {
+    height: 20%;
+  }
   background-color: $lightColor;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -49,6 +61,18 @@ $middlePadding: 5%;
 
 .photos-block {
   height: 100%;
+  @media (max-height: 1000px) {
+  margin-top: 1%;
+  }
+  @media (max-height: 800px) {
+    margin-top: 3%;
+  }
+  @media (max-height: 600px) {
+    margin-top: 6%;
+  }
+  @media (max-height: 400px) {
+    margin-top: 10%;
+  }
   .photos-block__back {
     @extend %photos-block__arrow;
   }
