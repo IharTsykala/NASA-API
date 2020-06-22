@@ -10,8 +10,6 @@ import { PhotoInterface } from "../../Redux/InterfacesEntity/Photo.interface"
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos"
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos"
-import { setData } from "../../Redux/store/Data/Data.actions"
-import { getPhotoByDay } from "../../Redux/store/Photo/Photo.actions"
 import handlerCommonChange from "../../services/common"
 
 const useStyles = makeStyles((theme: Theme) =>

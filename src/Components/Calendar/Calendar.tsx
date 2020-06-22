@@ -13,19 +13,16 @@ import handlerCommonChange from "../../services/common"
 
 type CalendarProps = {
   currentDate: Date,
-  // valueTodayDate: boolean,
   dispatch: any,
 }
 
 const Calendar: React.FunctionComponent<CalendarProps> = ({
   currentDate,
-  // valueTodayDate,
   dispatch,
 }) => {
   const date = Date.parse(localStorage.getItem("date") || "[]")
 
   useEffect(() => {
-    // const date = Date.parse(localStorage.getItem("date") || "[]")
     if (!Array.isArray(date) && !localStorage.getItem("valueTodayDate")) {
       dispatch(setData(new Date(date)))
       dispatch(getPhotoByDay(new Date(date)))
@@ -33,7 +30,6 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
   }, [date, dispatch])
 
   useEffect(() => {
-    // const date = Date.parse(localStorage.getItem("date") || "[]")
     if (!Array.isArray(date) && localStorage.getItem("valueTodayDate"))
       dispatch(getPhotoByDay(currentDate))
   }, [currentDate, date, dispatch])
@@ -71,7 +67,6 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 
 const mapStateToProps = (state: any) => ({
   currentDate: state.data.data,
-  // valueTodayDate: state.data.valueTodayDate,
 })
 
 export default connect(mapStateToProps)(Calendar)

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Box, List } from "@material-ui/core"
 import { connect } from "react-redux"
 import { PhotoInterface } from "../../../Redux/InterfacesEntity/Photo.interface"
