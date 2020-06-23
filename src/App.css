@@ -57,9 +57,6 @@
   color: #a7a7a7;
 }
 
-.photos-block {
-  height: 100%;
-}
 @media (max-height: 1000px) {
   .photos-block {
     margin-top: 1%;

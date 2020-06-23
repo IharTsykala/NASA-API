@@ -16,10 +16,9 @@ import { getPhotoByDay } from "../../Redux/store/Photo/Photo.actions"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: "100%",
+      width: "100vw",
       maxWidth: "1400px",
       margin: "auto",
-      height: "100%",
       textAlign: "center",
     },
     media: {
