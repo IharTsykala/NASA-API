@@ -16,12 +16,15 @@ import { getPhotoByDay } from "../../Redux/store/Photo/Photo.actions"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: "100vw",
-      maxWidth: "1400px",
-      margin: "auto",
+      width: "100%",
+      height: "100%",
+      justifyContent: "center",
+      margin: "0 auto",
       textAlign: "center",
     },
     media: {
+      width: "100%",
+      maxWidth: "1400px",
       paddingTop: "56.25%", // 16:9
       position: "relative",
     },
@@ -61,7 +64,7 @@ const CardPhoto: React.FunctionComponent<CardPhotoProps> = ({
 
   return (
     <>
-      <Card className={classes.root}>
+      <Card className={`photo-card-block ${classes.root}`}>
         <CardHeader title={currentPhoto.title} subheader={currentPhoto.date} />
         {currentPhoto.url && (
           <CardMedia

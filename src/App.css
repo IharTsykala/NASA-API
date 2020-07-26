@@ -10,7 +10,10 @@
 }
 
 .wrapper {
+  margin: 0 auto;
+  width: 100vw;
   height: 100vh;
+  max-width: 1400px;
 }
 
 .main-page {
@@ -19,8 +22,7 @@
 }
 
 .menu-block {
-  max-width: 1400px;
-  width: 100vw;
+  width: 100%;
   background-color: #ffffff;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -57,19 +59,22 @@
   color: #a7a7a7;
 }
 
-@media (max-height: 1000px) {
-  .photos-block {
-    margin-top: 1%;
-  }
+.photos-block {
+  width: 100%;
 }
-@media (max-height: 800px) {
+@media (max-height: 1000px) {
   .photos-block {
     margin-top: 3%;
   }
 }
-@media (max-height: 600px) {
+@media (max-height: 800px) {
   .photos-block {
     margin-top: 6%;
+  }
+}
+@media (max-height: 600px) {
+  .photos-block {
+    margin-top: 8%;
   }
 }
 @media (max-height: 400px) {
